@@ -522,12 +522,12 @@ export default function Dashboard() {
             </div>
             <div className="mt-6 text-center">
               <a
-                href="https://t.me/UzbekWorldClub"
+                href="https://t.me/UzbekWorldClub_Bot"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-green-700 dark:bg-green-600 text-white px-5 py-3 text-base font-semibold hover:bg-green-800 dark:hover:bg-green-500 transition-colors no-underline"
               >
-                💬 Open the Community on Telegram →
+                🤖 Open the Bot on Telegram →
               </a>
             </div>
           </CardContent>
