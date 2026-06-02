@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   Card,
   CardContent,
@@ -11,6 +11,148 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+
+// ============================================
+// LIVE TELEGRAM STATS
+// ============================================
+interface ChannelStat {
+  chatId: string;
+  title: string;
+  memberCount: number | null;
+  error: string | null;
+}
+
+function useTelegramStats() {
+  const [stats, setStats] = useState<ChannelStat[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  const fetchStats = useCallback(async () => {
+    try {
+      const res = await fetch("/api/telegram");
+      const data = await res.json();
+      if (data.channels) {
+        setStats(data.channels);
+        setLastUpdated(new Date().toLocaleTimeString());
+      }
+    } catch {
+      // silently fail — will show "—" for stats
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchStats();
+    const id = setInterval(fetchStats, 60_000); // refresh every 60s
+    return () => clearInterval(id);
+  }, [fetchStats]);
+
+  return { stats, loading, lastUpdated, refresh: fetchStats };
+}
+
+function LiveKPIs() {
+  const { stats, loading, lastUpdated, refresh } = useTelegramStats();
+
+  const mainChannel = stats.find((s) => s.chatId === "@UzbekWorldClub");
+  const testChannel = stats.find((s) => s.chatId === "@uzbekworld_test");
+
+  const kpis = [
+    {
+      label: "Telegram Members",
+      value: mainChannel?.memberCount ?? "—",
+      target: "10,000",
+      icon: "💬",
+      live: true,
+    },
+    {
+      label: "Test Channel",
+      value: testChannel?.memberCount ?? "—",
+      target: "—",
+      icon: "🧪",
+      live: true,
+    },
+    {
+      label: "Registered Fans",
+      value: "849",
+      target: "5,000",
+      icon: "🇺🇿",
+      live: false,
+      note: "from uzbekworldclub.com",
+    },
+    {
+      label: "Countries",
+      value: "40",
+      target: "50+",
+      icon: "🌍",
+      live: false,
+    },
+    {
+      label: "Traveling to WC",
+      value: "353",
+      target: "1,000",
+      icon: "✈️",
+      live: false,
+    },
+    {
+      label: "Stadium Seats Marked",
+      value: "173",
+      target: "500",
+      icon: "🏟️",
+      live: false,
+      note: "86 Azteca + 52 NRG + 35 MB",
+    },
+  ];
+
+  return (
+    <Card className="border-green-200 bg-green-50/50 dark:bg-green-950/20 dark:border-green-900">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-xl text-green-900 dark:text-green-100">📊 Live KPIs</CardTitle>
+            <CardDescription className="text-base text-green-700 dark:text-green-300">
+              {loading ? "Loading..." : `Last updated: ${lastUpdated}`}
+              {!loading && " · auto-refreshes every 60s"}
+            </CardDescription>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={refresh}
+            disabled={loading}
+            className="border-green-300 text-green-700 hover:bg-green-100 dark:border-green-700 dark:text-green-300"
+          >
+            🔄 Refresh
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+          {kpis.map((k) => (
+            <div
+              key={k.label}
+              className="text-center rounded-2xl border border-green-200 dark:border-green-800 p-5 bg-white dark:bg-green-950/30"
+            >
+              <div className="text-3xl mb-2">{k.icon}</div>
+              <div className="text-2xl font-extrabold tabular-nums">
+                {loading && k.live ? (
+                  <span className="animate-pulse text-muted-foreground">...</span>
+                ) : (
+                  typeof k.value === "number" ? k.value.toLocaleString() : k.value
+                )}
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">{k.label}</div>
+              <div className="text-xs text-green-600 dark:text-green-500 mt-1">
+                {k.live ? "🟢 live" : "📌 manual"} · target: {k.target}
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 function Countdown() {
   const [days, setDays] = useState(0);
@@ -217,6 +359,9 @@ export default function Dashboard() {
           </Card>
         </div>
 
+        {/* Live KPIs */}
+        <LiveKPIs />
+
         {/* Targets */}
         <Card>
           <CardHeader>
@@ -342,12 +487,68 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+        {/* Backend Access Request */}
+        <Card className="border-purple-200 bg-purple-50/50 dark:bg-purple-950/20 dark:border-purple-900">
+          <CardHeader>
+            <CardTitle className="text-xl text-purple-900 dark:text-purple-100">🔐 Backend / Database Access Needed</CardTitle>
+            <CardDescription className="text-base text-purple-700 dark:text-purple-300">
+              To make this dashboard fully live, we need access to the uzbekworldclub.com database (Supabase).
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-base text-purple-800 dark:text-purple-200 space-y-4">
+            <p>
+              Right now, the numbers for &quot;Registered Fans&quot;, &quot;Countries&quot;, &quot;Traveling&quot;, and &quot;Stadium Seats&quot; are
+              manually copied from the website. To make them <strong>update automatically</strong>, we need:
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
+                <h4 className="font-bold mb-2">1. Supabase Project URL</h4>
+                <p className="text-sm text-purple-600 dark:text-purple-400">
+                  Open your Lovable project → Settings → Supabase → copy the Project URL
+                </p>
+                <code className="block mt-2 text-xs bg-purple-100 dark:bg-purple-900 rounded p-2 break-all">
+                  https://xxxxx.supabase.co
+                </code>
+              </div>
+              <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
+                <h4 className="font-bold mb-2">2. Supabase Anon Key</h4>
+                <p className="text-sm text-purple-600 dark:text-purple-400">
+                  Same place → API Settings → copy the &quot;anon / public&quot; key
+                </p>
+                <code className="block mt-2 text-xs bg-purple-100 dark:bg-purple-900 rounded p-2 break-all">
+                  eyJhbGciOiJIUzI1NiIs...
+                </code>
+              </div>
+            </div>
+            <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
+              <h4 className="font-bold mb-2">How to find it in Lovable:</h4>
+              <ol className="list-decimal list-inside space-y-1 text-sm text-purple-600 dark:text-purple-400">
+                <li>Go to <a href="https://lovable.dev" target="_blank" className="underline font-medium">lovable.dev</a> → open your project</li>
+                <li>Click the <strong>Supabase</strong> icon in the left sidebar (green database icon)</li>
+                <li>You&apos;ll see your Project URL and can access the Supabase dashboard</li>
+                <li>In Supabase dashboard → Settings → API → copy <strong>Project URL</strong> + <strong>anon key</strong></li>
+                <li>Add both to Vercel: Settings → Environment Variables</li>
+              </ol>
+            </div>
+            <div className="rounded-xl border border-dashed border-purple-300 dark:border-purple-700 p-4 text-center">
+              <p className="text-sm text-purple-500 dark:text-purple-400 mb-2">Add these to your Vercel project as environment variables:</p>
+              <div className="flex flex-wrap justify-center gap-2">
+                <code className="text-xs bg-purple-100 dark:bg-purple-900 rounded px-3 py-1">NEXT_PUBLIC_SUPABASE_URL</code>
+                <code className="text-xs bg-purple-100 dark:bg-purple-900 rounded px-3 py-1">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
+              </div>
+              <p className="text-xs text-purple-400 dark:text-purple-500 mt-2">
+                ✅ BOT_TOKEN is already configured — Telegram stats are live
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Footer */}
         <div className="text-center text-base text-muted-foreground py-10 space-y-2">
           <p className="font-semibold">Uzbek World Club — Progress Dashboard</p>
-          <p>Last updated: June 2, 2026</p>
+          <p>Last updated: June 3, 2026</p>
           <div className="flex flex-wrap justify-center gap-4 mt-3">
-            <a href="https://uzbekworldclub.tiiny.site" className="underline hover:text-foreground" target="_blank">Website</a>
+            <a href="https://uzbekworldclub.com" className="underline hover:text-foreground" target="_blank">Website</a>
             <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">Telegram Community</a>
             <a href="https://t.me/uzbekworld_test" className="underline hover:text-foreground" target="_blank">Test Channel</a>
             <a href="https://t.me/UzbekWorldClub_Bot" className="underline hover:text-foreground" target="_blank">Bot</a>
