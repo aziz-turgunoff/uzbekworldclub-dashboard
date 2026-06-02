@@ -41,11 +41,11 @@ function Countdown() {
         { v: mins, l: "Minutes" },
         { v: secs, l: "Seconds" },
       ].map((u) => (
-        <div key={u.l} className="rounded-xl bg-primary/5 p-4">
-          <div className="text-3xl font-bold tabular-nums text-primary">
+        <div key={u.l} className="rounded-2xl bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 p-5">
+          <div className="text-4xl font-extrabold tabular-nums text-green-700 dark:text-green-400">
             {String(u.v).padStart(2, "0")}
           </div>
-          <div className="text-xs text-muted-foreground mt-1">{u.l}</div>
+          <div className="text-sm text-green-600 dark:text-green-500 mt-1 font-medium">{u.l}</div>
         </div>
       ))}
     </div>
@@ -62,47 +62,47 @@ const phases = [
   {
     name: "Phase 1 — Foundation", dates: "May 29 – Jun 1", status: "completed" as const, progress: 100, owner: "Community Lead",
     tasks: [
-      { name: "Telegram bot live (@UzbekWorldClub_Bot)", done: true },
-      { name: "Correct Group K match schedule wired", done: true },
-      { name: "Welcome flow for new members", done: true },
-      { name: "30-day content calendar generated", done: true },
-      { name: "50 engagement prompts added to bot", done: true },
-      { name: "Sensitive data moved to .env", done: true },
-      { name: "Graphify knowledge graph analysis", done: true },
-      { name: "Pinned welcome message (needs admin)", done: false },
-      { name: "Community rules posted", done: false },
-      { name: "3+ moderators confirmed", done: false },
+      { name: "Telegram bot is live and posting automatically", done: true },
+      { name: "Match schedule updated (Portugal, Colombia, DR Congo)", done: true },
+      { name: "New members get a welcome message when they join", done: true },
+      { name: "30-day content plan created", done: true },
+      { name: "50 conversation starters ready for the community", done: true },
+      { name: "All private data secured properly", done: true },
+      { name: "Project plan mapped visually (see graph below)", done: true },
+      { name: "Pin welcome message in Telegram (waiting for admin access)", done: false },
+      { name: "Post community rules in Telegram", done: false },
+      { name: "Confirm 3+ moderators for the group", done: false },
     ],
   },
   {
-    name: "Phase 2 — Growth Activation", dates: "Jun 2 – Jun 5", status: "active" as const, progress: 10, owner: "Community Lead + Content Lead",
+    name: "Phase 2 — Growth", dates: "Jun 2 – Jun 5", status: "active" as const, progress: 10, owner: "Community Lead + Content Lead",
     tasks: [
-      { name: "Influencer outreach (100/day)", done: false },
-      { name: "100+ Uzbek Telegram groups seeding", done: false },
-      { name: "City Captain recruitment", done: false },
-      { name: "Watch party onboarding", done: false },
-      { name: "City subgroups (Houston, Atlanta, Mexico)", done: false },
-      { name: "Target: 3,000 Telegram members", done: false },
+      { name: "Reach out to 100 influencers per day", done: false },
+      { name: "Share in 100+ Uzbek Telegram groups", done: false },
+      { name: "Recruit City Captains in key cities", done: false },
+      { name: "Start onboarding watch party hosts", done: false },
+      { name: "Create city subgroups (Houston, Atlanta, Mexico City)", done: false },
+      { name: "Goal: 3,000 Telegram members", done: false },
     ],
   },
   {
-    name: "Phase 3 — Community & Founder Layer", dates: "Jun 6 – Jun 10", status: "upcoming" as const, progress: 0, owner: "Sardor + Volunteer Lead",
+    name: "Phase 3 — Community & Founders", dates: "Jun 6 – Jun 10", status: "upcoming" as const, progress: 0, owner: "Sardor + Volunteer Lead",
     tasks: [
-      { name: "Founders Davra outreach", done: false },
-      { name: "Press outreach (Uzbek media)", done: false },
-      { name: "Stadium Davra activation", done: false },
-      { name: "50+ city watch party confirmations", done: false },
-      { name: "Target: 5,000–7,000 members", done: false },
+      { name: "Invite business leaders to Founders Davra", done: false },
+      { name: "Reach out to Uzbek media and press", done: false },
+      { name: "Coordinate fan seating sections at stadiums", done: false },
+      { name: "Confirm 50+ city watch parties", done: false },
+      { name: "Goal: 5,000–7,000 members", done: false },
     ],
   },
   {
-    name: "Phase 4 — Countdown Mode", dates: "Jun 11 – Jun 15", status: "upcoming" as const, progress: 0, owner: "Full Team",
+    name: "Phase 4 — Final Countdown", dates: "Jun 11 – Jun 15", status: "upcoming" as const, progress: 0, owner: "Full Team",
     tasks: [
-      { name: "Full countdown content blitz", done: false },
-      { name: "Matchday logistics posts", done: false },
-      { name: "Every member invites 3 people", done: false },
-      { name: "Stadium Davra live coordination", done: false },
-      { name: "Target: 10,000+ members at kickoff", done: false },
+      { name: "Daily countdown content across all channels", done: false },
+      { name: "Share matchday logistics (where to go, what to do)", done: false },
+      { name: "Ask every member to invite 3 friends", done: false },
+      { name: "Live coordination for fans at the stadium", done: false },
+      { name: "Goal: 10,000+ members by kickoff", done: false },
     ],
   },
 ];
@@ -118,44 +118,42 @@ const targets = [
 
 const completedWork = [
   {
-    category: "Telegram Bot",
+    category: "🤖 Telegram Bot",
     items: [
-      "Auto-posting bot live on @uzbekworld_test",
-      "Correct Group K schedule: Portugal, Colombia, DR Congo",
-      "30-min post interval with weighted content categories",
-      "Google News RSS parsing for real football news",
-      "Semantic duplicate detection (Jaccard similarity)",
-      "New member welcome handler with match info",
-      "10 engagement prompts (polls, questions, CTAs)",
-      "Admin panel with /status, /tags, /topic commands",
-      "All secrets in .env — zero hardcoded tokens",
+      "Bot is live and auto-posting to our test channel",
+      "Correct match schedule: Portugal → Colombia → DR Congo",
+      "Posts every 30 minutes with different types of content",
+      "Automatically finds and shares real football news",
+      "Avoids posting the same content twice",
+      "Greets new members with a welcome message",
+      "Includes polls and questions to engage the community",
+      "Admins can control the bot via Telegram commands",
     ],
   },
   {
-    category: "Content",
+    category: "📝 Content",
     items: [
-      "30-day content calendar (Jun 1 – Jun 30)",
-      "50 engagement prompts in Uzbek + Russian",
-      "Community rules document drafted",
-      "Welcome message with match schedule",
+      "30-day content calendar covering Jun 1 – Jun 30",
+      "50 conversation starters in Uzbek and Russian",
+      "Community rules document ready to post",
+      "Welcome message with full match schedule",
     ],
   },
   {
-    category: "Infrastructure",
+    category: "🗺️ Planning",
     items: [
-      "Graphify knowledge graph of entire execution plan",
-      "31 nodes, 31 connections, 10 communities detected",
-      "Local HTTP server for graphify visualization",
-      "All outputs consolidated in graphify/ folder",
-      "Legacy bot files cleaned (7 → 1 production file)",
+      "Visual map of the entire execution plan (interactive graph)",
+      "All project phases, goals, and risks mapped out",
+      "Clear view of what depends on what",
+      "Everything organized in one place",
     ],
   },
 ];
 
 function StatusBadge({ status }: { status: string }) {
   const variant = status === "completed" ? "default" : status === "active" ? "secondary" : "outline";
-  const label = status === "completed" ? "✅ Complete" : status === "active" ? "🔵 Active" : "⏳ Upcoming";
-  return <Badge variant={variant}>{label}</Badge>;
+  const label = status === "completed" ? "✅ Done" : status === "active" ? "🔵 In Progress" : "⏳ Coming Up";
+  return <Badge variant={variant} className="text-sm px-3 py-1">{label}</Badge>;
 }
 
 export default function Dashboard() {
@@ -163,32 +161,31 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card">
-        <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="max-w-5xl mx-auto px-6 py-10">
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-4xl">🇺🇿</span>
-                <h1 className="text-3xl font-bold tracking-tight">Uzbek World Club</h1>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-5xl">🇺🇿</span>
+                <h1 className="text-4xl font-extrabold tracking-tight">Uzbek World Club</h1>
               </div>
-              <p className="text-muted-foreground text-lg max-w-xl">
-                Build the largest organized Uzbek fan community on Earth around FIFA World Cup 2026 — Uzbekistan&apos;s first ever.
+              <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
+                Building the largest Uzbek fan community for FIFA World Cup 2026 — the first time Uzbekistan plays on the world stage.
               </p>
             </div>
             <div className="text-right hidden sm:block">
-              <div className="text-sm text-muted-foreground">Status</div>
-              <Badge className="bg-green-600 text-white text-sm px-3 py-1">🟢 Live</Badge>
+              <Badge className="bg-green-600 text-white text-base px-4 py-2">🟢 Live</Badge>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-8 space-y-8">
+      <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
         {/* Countdown + Match Schedule */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">⏰ Countdown to First Match</CardTitle>
-              <CardDescription>🇺🇿 Uzbekistan vs 🇵🇹 Portugal — Houston, Jun 17</CardDescription>
+              <CardTitle className="text-xl">⏰ Time Until First Match</CardTitle>
+              <CardDescription className="text-base">🇺🇿 Uzbekistan vs 🇵🇹 Portugal — Houston, June 17</CardDescription>
             </CardHeader>
             <CardContent>
               <Countdown />
@@ -197,20 +194,21 @@ export default function Dashboard() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">⚽ Group K — Match Schedule</CardTitle>
+              <CardTitle className="text-xl">⚽ Our Matches</CardTitle>
+              <CardDescription className="text-base">Group K — three games, three cities</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {matches.map((m) => (
-                <div key={m.date} className="flex items-center justify-between rounded-lg border p-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{m.flag}</span>
+                <div key={m.date} className="flex items-center justify-between rounded-xl border p-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-3xl">{m.flag}</span>
                     <div>
-                      <div className="font-semibold">vs {m.opponent}</div>
+                      <div className="font-bold text-base">vs {m.opponent}</div>
                       <div className="text-sm text-muted-foreground">{m.stadium}, {m.city}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-medium">{m.date}</div>
+                    <div className="font-bold text-base">{m.date}</div>
                     <div className="text-sm text-muted-foreground">{m.time}</div>
                   </div>
                 </div>
@@ -222,16 +220,16 @@ export default function Dashboard() {
         {/* Targets */}
         <Card>
           <CardHeader>
-            <CardTitle>🎯 Key Targets</CardTitle>
-            <CardDescription>What success looks like on June 17 at kickoff</CardDescription>
+            <CardTitle className="text-xl">🎯 Our Goals</CardTitle>
+            <CardDescription className="text-base">What we want to achieve by June 17</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
               {targets.map((t) => (
-                <div key={t.label} className="text-center rounded-xl border p-4">
-                  <div className="text-2xl mb-1">{t.icon}</div>
-                  <div className="text-xl font-bold">{t.target}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{t.label}</div>
+                <div key={t.label} className="text-center rounded-2xl border p-5">
+                  <div className="text-3xl mb-2">{t.icon}</div>
+                  <div className="text-2xl font-extrabold">{t.target}</div>
+                  <div className="text-sm text-muted-foreground mt-1">{t.label}</div>
                 </div>
               ))}
             </div>
@@ -241,29 +239,29 @@ export default function Dashboard() {
         {/* Phase Timeline */}
         <Card>
           <CardHeader>
-            <CardTitle>📅 17-Day Execution Plan</CardTitle>
-            <CardDescription>Four phases from infrastructure to matchday</CardDescription>
+            <CardTitle className="text-xl">📅 Execution Roadmap</CardTitle>
+            <CardDescription className="text-base">17 days, four phases — here&apos;s where we are</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-8">
             {phases.map((phase) => (
               <div key={phase.name}>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-lg">{phase.name}</h3>
-                    <p className="text-sm text-muted-foreground">{phase.dates} · Owner: {phase.owner}</p>
+                    <h3 className="font-bold text-lg">{phase.name}</h3>
+                    <p className="text-sm text-muted-foreground">{phase.dates} · Lead: {phase.owner}</p>
                   </div>
                   <StatusBadge status={phase.status} />
                 </div>
-                <Progress value={phase.progress} className="h-2 mb-3" />
-                <div className="grid sm:grid-cols-2 gap-1">
+                <Progress value={phase.progress} className="h-2.5 mb-4" />
+                <div className="grid sm:grid-cols-2 gap-2">
                   {phase.tasks.map((task) => (
-                    <div key={task.name} className="flex items-center gap-2 text-sm py-1">
-                      <span>{task.done ? "✅" : "⬜"}</span>
+                    <div key={task.name} className="flex items-center gap-2.5 text-base py-1.5">
+                      <span className="text-lg">{task.done ? "✅" : "⬜"}</span>
                       <span>{task.name}</span>
                     </div>
                   ))}
                 </div>
-                <Separator className="mt-4" />
+                <Separator className="mt-6" />
               </div>
             ))}
           </CardContent>
@@ -272,18 +270,18 @@ export default function Dashboard() {
         {/* What Was Completed */}
         <Card>
           <CardHeader>
-            <CardTitle>🛠️ Work Completed</CardTitle>
-            <CardDescription>Everything built and shipped in Phase 1</CardDescription>
+            <CardTitle className="text-xl">✅ What We&apos;ve Done So Far</CardTitle>
+            <CardDescription className="text-base">Everything completed in Phase 1</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-8">
               {completedWork.map((section) => (
                 <div key={section.category}>
-                  <h4 className="font-semibold mb-3">{section.category}</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-bold text-base mb-4">{section.category}</h4>
+                  <ul className="space-y-3">
                     {section.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm">
-                        <span className="text-green-600 mt-0.5">✓</span>
+                      <li key={item} className="flex items-start gap-2.5 text-base leading-relaxed">
+                        <span className="text-green-600 mt-0.5 text-lg">✓</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -294,49 +292,50 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Graphify Note */}
+        {/* Project Map */}
         <Card className="border-blue-200 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-900">
           <CardHeader>
-            <CardTitle className="text-blue-900 dark:text-blue-100">📊 Graphify — Internal Planning Tool</CardTitle>
+            <CardTitle className="text-xl text-blue-900 dark:text-blue-100">📊 Project Map</CardTitle>
+            <CardDescription className="text-base text-blue-700 dark:text-blue-300">
+              A visual overview of everything in our plan — how phases, goals, risks, and deliverables connect to each other.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="text-sm text-blue-800 dark:text-blue-200 space-y-2">
+          <CardContent className="text-base text-blue-800 dark:text-blue-200 space-y-3">
             <p>
-              Graphify is our internal knowledge graph analysis tool. It maps the entire execution plan into a
-              navigable graph with 31 nodes, 31 connections, and 10 detected communities.
+              We mapped out the entire project as an interactive diagram. You can click on any item to see
+              what it connects to — which phase it belongs to, what it depends on, and who&apos;s responsible.
             </p>
             <p>
-              We use it to identify dependencies between phases, track deliverables, and plan future phases
-              (Growth, Founders Davra, Stadium Davra). It is not a customer-facing tool — it&apos;s our operational
-              backbone for Phases 2–4.
+              This helps us stay organized and plan ahead for the next phases.
             </p>
-            <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 mt-3 rounded-md bg-blue-700 dark:bg-blue-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
-              📊 Open Interactive Knowledge Graph →
+            <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 mt-3 rounded-lg bg-blue-700 dark:bg-blue-600 text-white px-5 py-3 text-base font-semibold hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
+              📊 Open Project Map →
             </a>
           </CardContent>
         </Card>
 
-        {/* Blockers */}
+        {/* What Needs Attention */}
         <Card className="border-amber-200 bg-amber-50/50 dark:bg-amber-950/20 dark:border-amber-900">
           <CardHeader>
-            <CardTitle className="text-amber-900 dark:text-amber-100">⚠️ Blockers &amp; Next Actions</CardTitle>
+            <CardTitle className="text-xl text-amber-900 dark:text-amber-100">⚠️ What Needs Attention</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-8">
               <div>
-                <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">Blocking Phase 1 Completion</h4>
-                <ul className="space-y-2 text-sm text-amber-800 dark:text-amber-200">
-                  <li>🔴 Telegram admin rights needed for pinned message</li>
-                  <li>🔴 Community rules need to be posted</li>
-                  <li>🔴 3+ moderators need confirmation</li>
+                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">To Finish Phase 1</h4>
+                <ul className="space-y-3 text-base text-amber-800 dark:text-amber-200">
+                  <li>🔴 We need admin access to the Telegram channel to pin the welcome message</li>
+                  <li>🔴 Community rules need to be posted for members to see</li>
+                  <li>🔴 We need at least 3 moderators confirmed and active</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">Phase 2 Immediate Actions (Today)</h4>
-                <ul className="space-y-2 text-sm text-amber-800 dark:text-amber-200">
-                  <li>🟡 City Captain SOP + recruitment post</li>
-                  <li>🟡 100 Telegram groups outreach list</li>
-                  <li>🟡 Influencer outreach list (100+)</li>
-                  <li>🟡 Switch bot to @uzbekworldcup when ready</li>
+                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">Starting Phase 2 (Today)</h4>
+                <ul className="space-y-3 text-base text-amber-800 dark:text-amber-200">
+                  <li>🟡 Write and share the City Captain recruitment post</li>
+                  <li>🟡 Build list of 100 Uzbek Telegram groups to reach out to</li>
+                  <li>🟡 Build list of 100+ influencers to contact</li>
+                  <li>🟡 Switch the bot to the main channel when we&apos;re ready</li>
                 </ul>
               </div>
             </div>
@@ -344,17 +343,15 @@ export default function Dashboard() {
         </Card>
 
         {/* Footer */}
-        <div className="text-center text-sm text-muted-foreground py-8">
-          <p>Uzbek World Club — Execution Dashboard · Built June 2, 2026</p>
-          <p className="mt-1">
-            <a href="https://uzbekworldclub.tiiny.site" className="underline hover:text-foreground" target="_blank">uzbekworldclub.tiiny.site</a>
-            {" · "}
-            <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">t.me/UzbekWorldClub</a>
-            {" · "}
+        <div className="text-center text-base text-muted-foreground py-10 space-y-2">
+          <p className="font-semibold">Uzbek World Club — Progress Dashboard</p>
+          <p>Last updated: June 2, 2026</p>
+          <div className="flex flex-wrap justify-center gap-4 mt-3">
+            <a href="https://uzbekworldclub.tiiny.site" className="underline hover:text-foreground" target="_blank">Website</a>
+            <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">Telegram Community</a>
             <a href="https://t.me/uzbekworld_test" className="underline hover:text-foreground" target="_blank">Test Channel</a>
-            {" · "}
-            <a href="https://t.me/UzbekWorldClub_Bot" className="underline hover:text-foreground" target="_blank">@UzbekWorldClub_Bot</a>
-          </p>
+            <a href="https://t.me/UzbekWorldClub_Bot" className="underline hover:text-foreground" target="_blank">Bot</a>
+          </div>
         </div>
       </main>
     </div>
