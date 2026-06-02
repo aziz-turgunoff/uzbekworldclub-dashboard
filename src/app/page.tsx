@@ -14,6 +14,23 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
 // ============================================
+// FLAG COMPONENT (uses flagcdn.com SVGs — renders identically on Windows/Mac/Linux)
+// ============================================
+function Flag({ code, size = 32, className = "" }: { code: string; size?: number; className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://flagcdn.com/${code.toLowerCase()}.svg`}
+      alt={`${code} flag`}
+      width={size}
+      height={Math.round(size * 0.75)}
+      className={`inline-block rounded-sm shadow-sm object-cover ${className}`}
+      style={{ width: size, height: Math.round(size * 0.75) }}
+    />
+  );
+}
+
+// ============================================
 // LIVE TELEGRAM STATS
 // ============================================
 interface ChannelStat {
@@ -195,9 +212,9 @@ function Countdown() {
 }
 
 const matches = [
-  { date: "Jun 17", time: "21:00", opponent: "Portugal", flag: "🇵🇹", city: "Houston", stadium: "NRG Stadium" },
-  { date: "Jun 21", time: "18:00", opponent: "Colombia", flag: "🇨🇴", city: "Atlanta", stadium: "Mercedes-Benz Stadium" },
-  { date: "Jun 25", time: "15:00", opponent: "DR Congo", flag: "🇨🇩", city: "Mexico City", stadium: "Estadio Azteca" },
+  { date: "Jun 17", time: "21:00", opponent: "Portugal", flagCode: "pt", city: "Houston", stadium: "NRG Stadium" },
+  { date: "Jun 21", time: "18:00", opponent: "Colombia", flagCode: "co", city: "Atlanta", stadium: "Mercedes-Benz Stadium" },
+  { date: "Jun 25", time: "15:00", opponent: "DR Congo", flagCode: "cd", city: "Mexico City", stadium: "Estadio Azteca" },
 ];
 
 const phases = [
@@ -307,7 +324,7 @@ export default function Dashboard() {
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-5xl">🇺🇿</span>
+                <Flag code="uz" size={48} />
                 <h1 className="text-4xl font-extrabold tracking-tight">Uzbek World Club</h1>
               </div>
               <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
@@ -327,7 +344,9 @@ export default function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl">⏰ Time Until First Match</CardTitle>
-              <CardDescription className="text-base">🇺🇿 Uzbekistan vs 🇵🇹 Portugal — Houston, June 17</CardDescription>
+              <CardDescription className="text-base flex items-center gap-2 flex-wrap">
+                <Flag code="uz" size={20} /> Uzbekistan vs <Flag code="pt" size={20} /> Portugal — Houston, June 17
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <Countdown />
@@ -343,7 +362,7 @@ export default function Dashboard() {
               {matches.map((m) => (
                 <div key={m.date} className="flex items-center justify-between rounded-xl border p-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-3xl">{m.flag}</span>
+                    <Flag code={m.flagCode} size={40} />
                     <div>
                       <div className="font-bold text-base">vs {m.opponent}</div>
                       <div className="text-sm text-muted-foreground">{m.stadium}, {m.city}</div>
