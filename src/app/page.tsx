@@ -309,6 +309,49 @@ const completedWork = [
   },
 ];
 
+const botFeatures = [
+  {
+    icon: "🌐",
+    title: "3 Languages",
+    desc: "Members choose Uzbek, Russian, or English on first use — the bot remembers each person's choice.",
+  },
+  {
+    icon: "⚽",
+    title: "Full Squad",
+    desc: "Browse the complete official 26-man Uzbekistan World Cup roster — tap any player for details.",
+  },
+  {
+    icon: "📅",
+    title: "Match Schedule",
+    desc: "All three group matches (Portugal, Colombia, DR Congo) with dates, cities, and stadiums.",
+  },
+  {
+    icon: "🎉",
+    title: "Watch Parties",
+    desc: "Find and join the official watch party in your city — Houston, Atlanta, and more.",
+  },
+  {
+    icon: "🤝",
+    title: "5 Programs",
+    desc: "Sign up for Founders Davra, Stadium Davra, City Captain, Volunteer, or Fan Passport — with direct registration links.",
+  },
+  {
+    icon: "📣",
+    title: "Auto-Posting",
+    desc: "Posts countdown content automatically and welcomes every new member who joins the community.",
+  },
+  {
+    icon: "📊",
+    title: "Admin War Room",
+    desc: "Admins see a live dashboard — real Telegram member count vs targets, right inside Telegram.",
+  },
+  {
+    icon: "🔗",
+    title: "Join Community",
+    desc: "One tap takes members straight to the main Telegram community channel.",
+  },
+];
+
 function StatusBadge({ status }: { status: string }) {
   const variant = status === "completed" ? "default" : status === "active" ? "secondary" : "outline";
   const label = status === "completed" ? "✅ Done" : status === "active" ? "🔵 In Progress" : "⏳ Coming Up";
@@ -452,6 +495,40 @@ export default function Dashboard() {
                   </ul>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Bot Features Showcase */}
+        <Card className="border-green-200 bg-green-50/50 dark:bg-green-950/20 dark:border-green-900">
+          <CardHeader>
+            <CardTitle className="text-xl text-green-900 dark:text-green-100">🤖 Try the Bot — What It Can Do</CardTitle>
+            <CardDescription className="text-base text-green-700 dark:text-green-300">
+              The Telegram bot members interact with — here&apos;s everything it does today.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {botFeatures.map((f) => (
+                <div
+                  key={f.title}
+                  className="rounded-2xl border border-green-200 dark:border-green-800 bg-white dark:bg-green-950/30 p-5"
+                >
+                  <div className="text-3xl mb-2">{f.icon}</div>
+                  <div className="font-bold text-base mb-1">{f.title}</div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <a
+                href="https://t.me/UzbekWorldClub"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-700 dark:bg-green-600 text-white px-5 py-3 text-base font-semibold hover:bg-green-800 dark:hover:bg-green-500 transition-colors no-underline"
+              >
+                💬 Open the Community on Telegram →
+              </a>
             </div>
           </CardContent>
         </Card>
