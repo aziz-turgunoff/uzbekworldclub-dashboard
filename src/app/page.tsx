@@ -77,7 +77,7 @@ function LiveKPIs() {
       label: "Registered Fans",
       value: "849",
       target: "5,000",
-      icon: "👥",
+      icon: "⭐",
       live: false,
       note: "from uzbekworldclub.com",
     },
