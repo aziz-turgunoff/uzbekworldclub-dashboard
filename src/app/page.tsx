@@ -309,8 +309,8 @@ export default function Dashboard() {
               (Growth, Founders Davra, Stadium Davra). It is not a customer-facing tool — it&apos;s our operational
               backbone for Phases 2–4.
             </p>
-            <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 mt-2 text-blue-700 dark:text-blue-300 font-medium underline hover:no-underline">
-              🔗 Open Interactive Knowledge Graph
+            <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 mt-3 rounded-md bg-blue-700 dark:bg-blue-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
+              📊 Open Interactive Knowledge Graph →
             </a>
           </CardContent>
         </Card>
