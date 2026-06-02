@@ -77,7 +77,7 @@ function LiveKPIs() {
       label: "Registered Fans",
       value: "849",
       target: "5,000",
-      icon: "🇺🇿",
+      icon: "flag-uz",
       live: false,
       note: "from uzbekworldclub.com",
     },
@@ -134,7 +134,11 @@ function LiveKPIs() {
               key={k.label}
               className="text-center rounded-2xl border border-green-200 dark:border-green-800 p-5 bg-white dark:bg-green-950/30"
             >
-              <div className="text-3xl mb-2">{k.icon}</div>
+              <div className="text-3xl mb-2">
+                {k.icon === "flag-uz" ? (
+                  <img src="https://flagcdn.com/w80/uz.png" alt="🇺🇿" className="w-8 h-auto mx-auto" />
+                ) : k.icon}
+              </div>
               <div className="text-2xl font-extrabold tabular-nums">
                 {loading && k.live ? (
                   <span className="animate-pulse text-muted-foreground">...</span>
