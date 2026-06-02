@@ -350,6 +350,10 @@ export default function Dashboard() {
             <a href="https://uzbekworldclub.tiiny.site" className="underline hover:text-foreground" target="_blank">uzbekworldclub.tiiny.site</a>
             {" · "}
             <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">t.me/UzbekWorldClub</a>
+            {" · "}
+            <a href="https://t.me/uzbekworld_test" className="underline hover:text-foreground" target="_blank">Test Channel</a>
+            {" · "}
+            <a href="https://t.me/UzbekWorldClub_Bot" className="underline hover:text-foreground" target="_blank">@UzbekWorldClub_Bot</a>
           </p>
         </div>
       </main>
