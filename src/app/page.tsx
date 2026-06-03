@@ -311,6 +311,11 @@ const completedWork = [
 
 const botFeatures = [
   {
+    icon: "🤖",
+    title: "AI Chat",
+    desc: "Members and admins ask questions in any language — answers are scoped to Uzbek World Club, the squad, programs, and World Cup 2026.",
+  },
+  {
     icon: "🌐",
     title: "3 Languages",
     desc: "Members choose Uzbek, Russian, or English on first use — the bot remembers each person's choice.",
