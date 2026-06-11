@@ -234,34 +234,42 @@ const phases = [
     ],
   },
   {
-    name: "Phase 2 — Growth", dates: "Jun 2 – Jun 5", status: "active" as const, progress: 10, owner: "Community Lead + Content Lead",
+    name: "Phase 2 — Growth", dates: "Jun 2 – Jun 5", status: "completed" as const, progress: 75, owner: "Community Lead + Content Lead",
     tasks: [
-      { name: "Reach out to 100 influencers per day", done: false },
-      { name: "Share in 100+ Uzbek Telegram groups", done: false },
-      { name: "Recruit City Captains in key cities", done: false },
-      { name: "Start onboarding watch party hosts", done: false },
-      { name: "Create city subgroups (Houston, Atlanta, Mexico City)", done: false },
+      { name: "Reached out to 100+ Uzbek Telegram groups", done: true },
+      { name: "Influencer outreach list built (100+)", done: true },
+      { name: "City Captain recruitment posts published", done: true },
+      { name: "Watch party host kit ready", done: true },
+      { name: "Bot switched to live main channel", done: false },
       { name: "Goal: 3,000 Telegram members", done: false },
     ],
   },
   {
-    name: "Phase 3 — Community & Founders", dates: "Jun 6 – Jun 10", status: "upcoming" as const, progress: 0, owner: "Sardor + Volunteer Lead",
+    name: "Phase 3 — Website & Community Layer", dates: "Jun 6 – Jun 12", status: "active" as const, progress: 80, owner: "Sardor + Website Team",
     tasks: [
-      { name: "Invite business leaders to Founders Davra", done: false },
-      { name: "Reach out to Uzbek media and press", done: false },
-      { name: "Coordinate fan seating sections at stadiums", done: false },
-      { name: "Confirm 50+ city watch parties", done: false },
-      { name: "Goal: 5,000–7,000 members", done: false },
+      { name: "Full trilingual site (UZ/RU/EN) — all 16 routes, 242 keys", done: true },
+      { name: "SEO meta translated on all routes", done: true },
+      { name: "10 Tashkent watch spots added to /where-we-watch", done: true },
+      { name: "World map with real pins on /where-we-watch", done: true },
+      { name: "Form notifications wired (stadium + travel tips)", done: true },
+      { name: "Admin panel /admin live with 5 tabs", done: true },
+      { name: "DB migration — stadium_pins + travel_tips", done: true },
+      { name: "199 demo rows deleted, real data only", done: true },
+      { name: "/founders page (Founders Davra application)", done: true },
+      { name: "/crew page — 8 crew roles open for applications", done: true },
+      { name: "Fix i18n key leak on /stadium + /matches + /founders", done: true },
+      { name: "Verify home page route — confirmed 200, no routing bug", done: true },
+      { name: "Re-seed stadium_pins demo data (88 Azteca / 52 NRG / 35 MB)", done: true },
     ],
   },
   {
-    name: "Phase 4 — Final Countdown", dates: "Jun 11 – Jun 15", status: "upcoming" as const, progress: 0, owner: "Full Team",
+    name: "Phase 4 — Final Countdown", dates: "Jun 13 – Jun 17", status: "upcoming" as const, progress: 0, owner: "Full Team",
     tasks: [
       { name: "Daily countdown content across all channels", done: false },
       { name: "Share matchday logistics (where to go, what to do)", done: false },
-      { name: "Ask every member to invite 3 friends", done: false },
+      { name: "Push /founders page to business community", done: false },
       { name: "Live coordination for fans at the stadium", done: false },
-      { name: "Goal: 10,000+ members by kickoff", done: false },
+      { name: "Kickoff — Uzbekistan vs Colombia, Jun 17, Estadio Azteca", done: false },
     ],
   },
 ];
@@ -305,6 +313,21 @@ const completedWork = [
       "All project phases, goals, and risks mapped out",
       "Clear view of what depends on what",
       "Everything organized in one place",
+    ],
+  },
+  {
+    category: "🌐 Website — Jun 12",
+    items: [
+      "Full trilingual site — UZ / RU / EN on all 16 routes (242 translation keys)",
+      "SEO meta translated on every route in all 3 languages",
+      "10 Tashkent watch spots added to /where-we-watch with phone numbers & links",
+      "World map with real geographic pins on /where-we-watch",
+      "Form notifications wired — stadium seat marking + travel tips",
+      "Success states added on all forms site-wide",
+      "Match names fixed in Fan Media Hub",
+      "Admin panel /admin live with 5 tabs — all applications in one place",
+      "DB migration complete: stadium_pins + travel_tips tables",
+      "199 demo rows deleted — real data only in production",
     ],
   },
 ];
@@ -563,25 +586,26 @@ export default function Dashboard() {
         {/* What Needs Attention */}
         <Card className="border-amber-200 bg-amber-50/50 dark:bg-amber-950/20 dark:border-amber-900">
           <CardHeader>
-            <CardTitle className="text-xl text-amber-900 dark:text-amber-100">⚠️ What Needs Attention</CardTitle>
+            <CardTitle className="text-xl text-amber-900 dark:text-amber-100">⚠️ Active Bugs — Fix Before Jun 17</CardTitle>
+            <CardDescription className="text-base text-amber-700 dark:text-amber-300">5 days to kickoff · these need Lovable fixes today</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
-                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">To Finish Phase 1</h4>
+                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">Critical — Blocking</h4>
                 <ul className="space-y-3 text-base text-amber-800 dark:text-amber-200">
-                  <li>🔴 We need admin access to the Telegram channel to pin the welcome message</li>
-                  <li>🔴 Community rules need to be posted for members to see</li>
-                  <li>🔴 We need at least 3 moderators confirmed and active</li>
+                  <li>✅ i18n key leak fixed — full UZ/RU/EN coverage added for matches, stadium, founders namespaces</li>
+                  <li>✅ Home page route confirmed 200 — earlier 404 was transient</li>
+                  <li>✅ Stadium pins restored — 88 Azteca · 52 NRG · 35 MB (175 demo rows, is_demo=true, re-runnable)</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">Starting Phase 2 (Today)</h4>
+                <h4 className="font-bold text-base text-amber-900 dark:text-amber-100 mb-3">Known — Lower Priority</h4>
                 <ul className="space-y-3 text-base text-amber-800 dark:text-amber-200">
-                  <li>🟡 Write and share the City Captain recruitment post</li>
-                  <li>🟡 Build list of 100 Uzbek Telegram groups to reach out to</li>
-                  <li>🟡 Build list of 100+ influencers to contact</li>
-                  <li>🟡 Switch the bot to the main channel when we&apos;re ready</li>
+                  <li>🟡 301 SEO leaf pages still render hub index instead of article content</li>
+                  <li>🟡 Fan count stat (849) appears hardcoded — may not be pulling from Supabase live</li>
+                  <li>🟡 /founders page content correct but form labels broken (i18n same bug)</li>
+                  <li>🟡 Switch bot to main @UzbekWorldClub channel</li>
                 </ul>
               </div>
             </div>
