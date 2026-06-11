@@ -612,66 +612,10 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Backend Access Request */}
-        <Card className="border-purple-200 bg-purple-50/50 dark:bg-purple-950/20 dark:border-purple-900">
-          <CardHeader>
-            <CardTitle className="text-xl text-purple-900 dark:text-purple-100">🔐 Backend / Database Access Needed</CardTitle>
-            <CardDescription className="text-base text-purple-700 dark:text-purple-300">
-              To make this dashboard fully live, we need access to the uzbekworldclub.com database (Supabase).
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-base text-purple-800 dark:text-purple-200 space-y-4">
-            <p>
-              Right now, the numbers for &quot;Registered Fans&quot;, &quot;Countries&quot;, &quot;Traveling&quot;, and &quot;Stadium Seats&quot; are
-              manually copied from the website. To make them <strong>update automatically</strong>, we need:
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
-                <h4 className="font-bold mb-2">1. Supabase Project URL</h4>
-                <p className="text-sm text-purple-600 dark:text-purple-400">
-                  Open your Lovable project → Settings → Supabase → copy the Project URL
-                </p>
-                <code className="block mt-2 text-xs bg-purple-100 dark:bg-purple-900 rounded p-2 break-all">
-                  https://xxxxx.supabase.co
-                </code>
-              </div>
-              <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
-                <h4 className="font-bold mb-2">2. Supabase Anon Key</h4>
-                <p className="text-sm text-purple-600 dark:text-purple-400">
-                  Same place → API Settings → copy the &quot;anon / public&quot; key
-                </p>
-                <code className="block mt-2 text-xs bg-purple-100 dark:bg-purple-900 rounded p-2 break-all">
-                  eyJhbGciOiJIUzI1NiIs...
-                </code>
-              </div>
-            </div>
-            <div className="rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/30 p-4">
-              <h4 className="font-bold mb-2">How to find it in Lovable:</h4>
-              <ol className="list-decimal list-inside space-y-1 text-sm text-purple-600 dark:text-purple-400">
-                <li>Go to <a href="https://lovable.dev" target="_blank" className="underline font-medium">lovable.dev</a> → open your project</li>
-                <li>Click the <strong>Supabase</strong> icon in the left sidebar (green database icon)</li>
-                <li>You&apos;ll see your Project URL and can access the Supabase dashboard</li>
-                <li>In Supabase dashboard → Settings → API → copy <strong>Project URL</strong> + <strong>anon key</strong></li>
-                <li>Add both to Vercel: Settings → Environment Variables</li>
-              </ol>
-            </div>
-            <div className="rounded-xl border border-dashed border-purple-300 dark:border-purple-700 p-4 text-center">
-              <p className="text-sm text-purple-500 dark:text-purple-400 mb-2">Add these to your Vercel project as environment variables:</p>
-              <div className="flex flex-wrap justify-center gap-2">
-                <code className="text-xs bg-purple-100 dark:bg-purple-900 rounded px-3 py-1">NEXT_PUBLIC_SUPABASE_URL</code>
-                <code className="text-xs bg-purple-100 dark:bg-purple-900 rounded px-3 py-1">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
-              </div>
-              <p className="text-xs text-purple-400 dark:text-purple-500 mt-2">
-                ✅ BOT_TOKEN is already configured — Telegram stats are live
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Footer */}
         <div className="text-center text-base text-muted-foreground py-10 space-y-2">
           <p className="font-semibold">Uzbek World Club — Progress Dashboard</p>
-          <p>Last updated: June 3, 2026</p>
+          <p>Last updated: June 12, 2026</p>
           <div className="flex flex-wrap justify-center gap-4 mt-3">
             <a href="https://uzbekworldclub.com" className="underline hover:text-foreground" target="_blank">Website</a>
             <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">Telegram Community</a>
