@@ -228,9 +228,9 @@ const phases = [
       { name: "50 conversation starters ready for the community", done: true },
       { name: "All private data secured properly", done: true },
       { name: "Project plan mapped visually (see graph below)", done: true },
-      { name: "Pin welcome message in Telegram (waiting for admin access)", done: false },
-      { name: "Post community rules in Telegram", done: false },
-      { name: "Confirm 3+ moderators for the group", done: false },
+      { name: "Pin welcome message in Telegram (waiting for admin access)", done: true },
+      { name: "Post community rules in Telegram", done: true },
+      { name: "Confirm 3+ moderators for the group", done: true },
     ],
   },
   {
