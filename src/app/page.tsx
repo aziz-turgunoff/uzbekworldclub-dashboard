@@ -114,11 +114,27 @@ function LiveKPIs() {
     },
     {
       label: "Stadium Seats Marked",
-      value: "173",
+      value: "177",
       target: "500",
-      icon: "🏟️",
+      icon: "🏠",
       live: false,
-      note: "86 Azteca + 52 NRG + 35 MB",
+      note: "90 Azteca + 52 NRG + 35 MB",
+    },
+    {
+      label: "US Watch Venues",
+      value: "107",
+      target: "200+",
+      icon: "🎺",
+      live: false,
+      note: "21 US states",
+    },
+    {
+      label: "City Chapters",
+      value: "8",
+      target: "30+",
+      icon: "🏙️",
+      live: false,
+      note: "4 active, 4 open",
     },
   ];
 
@@ -212,9 +228,9 @@ function Countdown() {
 }
 
 const matches = [
-  { date: "Jun 17", time: "21:00", opponent: "Portugal", flagCode: "pt", city: "Houston", stadium: "NRG Stadium" },
-  { date: "Jun 21", time: "18:00", opponent: "Colombia", flagCode: "co", city: "Atlanta", stadium: "Mercedes-Benz Stadium" },
-  { date: "Jun 25", time: "15:00", opponent: "DR Congo", flagCode: "cd", city: "Mexico City", stadium: "Estadio Azteca" },
+  { date: "Jun 17", time: "21:00 CST", opponent: "Colombia", flagCode: "co", city: "Mexico City", stadium: "Estadio Azteca", live: true },
+  { date: "Jun 23", time: "18:00 ET", opponent: "Portugal", flagCode: "pt", city: "Houston", stadium: "NRG Stadium", live: false },
+  { date: "Jun 27", time: "16:00 ET", opponent: "DR Congo", flagCode: "cd", city: "Atlanta", stadium: "Mercedes-Benz Stadium", live: false },
 ];
 
 const phases = [
@@ -263,13 +279,17 @@ const phases = [
     ],
   },
   {
-    name: "Phase 4 — Final Countdown", dates: "Jun 13 – Jun 17", status: "upcoming" as const, progress: 0, owner: "Full Team",
+    name: "Phase 4 — Matchday & Beyond", dates: "Jun 13 – Jun 27", status: "active" as const, progress: 30, owner: "Full Team",
     tasks: [
-      { name: "Daily countdown content across all channels", done: false },
-      { name: "Share matchday logistics (where to go, what to do)", done: false },
-      { name: "Push /founders page to business community", done: false },
-      { name: "Live coordination for fans at the stadium", done: false },
-      { name: "Kickoff — Uzbekistan vs Colombia, Jun 17, Estadio Azteca", done: false },
+      { name: "Home rebuilt for matchday — new hero, stats, quick actions", done: true },
+      { name: "10,000+ community members — goal hit on kickoff day", done: true },
+      { name: "107 US Uzbek venues live on /where-we-watch (uzbek.fan format absorbed)", done: true },
+      { name: "/chapters page live — 8 cities, 4 active", done: true },
+      { name: "/music page live — official Suno playlist", done: true },
+      { name: "Fix /music i18n key leak (same bug as was on /stadium/matches)", done: false },
+      { name: "Match 1: Uzbekistan vs Colombia — TODAY 21:00 CST, Azteca", done: false },
+      { name: "Match 2: Uzbekistan vs Portugal — Jun 23, NRG Houston", done: false },
+      { name: "Match 3: Uzbekistan vs DR Congo — Jun 27, Atlanta", done: false },
     ],
   },
 ];
@@ -328,6 +348,19 @@ const completedWork = [
       "Admin panel /admin live with 5 tabs — all applications in one place",
       "DB migration complete: stadium_pins + travel_tips tables",
       "199 demo rows deleted — real data only in production",
+    ],
+  },
+  {
+    category: "🏆 Website — Jun 17 (Kickoff Day)",
+    items: [
+      "Home completely rebuilt — new hero 'The Global Home of Uzbek Football Fans'",
+      "10,000+ community members stat live on home (goal hit on kickoff day!)",
+      "120+ Cities Connected · 30+ Countries displayed as social proof",
+      "107 Uzbek-owned US venues on /where-we-watch across 21 states",
+      "/chapters page live — 8 cities (Houston, NYC, Istanbul, Tashkent active; Atlanta, LA, Mexico City, Seoul recruiting)",
+      "/music page live — official Suno playlist, city culture tabs",
+      "Stadium /stadium renamed 'Sit with our people' — 90/52/35 live counts",
+      "Live match countdown widget on home (01D:04H to kickoff)",
     ],
   },
 ];
@@ -410,6 +443,19 @@ export default function Dashboard() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
+
+        {/* KICKOFF DAY BANNER */}
+        <div className="rounded-2xl bg-gradient-to-r from-green-600 to-emerald-700 text-white p-6 text-center space-y-2 shadow-lg">
+          <div className="text-4xl">⚽</div>
+          <div className="text-2xl font-extrabold tracking-tight">KICKOFF DAY — June 17, 2026</div>
+          <div className="text-lg font-semibold opacity-90">🇺🇿 Uzbekistan vs Colombia 🇨🇴 · 21:00 CST · Estadio Azteca, Mexico City</div>
+          <div className="text-base opacity-80">10,000+ community members · 90 Uzbeks at Azteca · 107 US venues · Olg&apos;a O&apos;zbekiston!</div>
+          <a href="https://uzbekworldclub.com" target="_blank" rel="noreferrer"
+            className="inline-block mt-2 rounded-lg bg-white text-green-700 px-5 py-2 text-base font-bold hover:bg-green-50 transition-colors no-underline">
+            Open Live Site →
+          </a>
+        </div>
+
         {/* Countdown + Match Schedule */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
@@ -431,11 +477,11 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent className="space-y-4">
               {matches.map((m) => (
-                <div key={m.date} className="flex items-center justify-between rounded-xl border p-4">
+                <div key={m.date} className={`flex items-center justify-between rounded-xl border p-4 ${(m as {live?:boolean}).live ? "border-green-400 bg-green-50 dark:bg-green-950/30" : ""}`}>
                   <div className="flex items-center gap-4">
                     <Flag code={m.flagCode} size={40} />
                     <div>
-                      <div className="font-bold text-base">vs {m.opponent}</div>
+                      <div className="font-bold text-base">vs {m.opponent} {(m as {live?:boolean}).live && <span className="ml-2 text-xs bg-green-600 text-white rounded px-2 py-0.5">TODAY</span>}</div>
                       <div className="text-sm text-muted-foreground">{m.stadium}, {m.city}</div>
                     </div>
                   </div>
@@ -615,7 +661,7 @@ export default function Dashboard() {
         {/* Footer */}
         <div className="text-center text-base text-muted-foreground py-10 space-y-2">
           <p className="font-semibold">Uzbek World Club — Progress Dashboard</p>
-          <p>Last updated: June 12, 2026</p>
+          <p>Last updated: June 17, 2026 — Kickoff Day 🎖️</p>
           <div className="flex flex-wrap justify-center gap-4 mt-3">
             <a href="https://uzbekworldclub.com" className="underline hover:text-foreground" target="_blank">Website</a>
             <a href="https://t.me/UzbekWorldClub" className="underline hover:text-foreground" target="_blank">Telegram Community</a>
