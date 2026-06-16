@@ -444,18 +444,6 @@ export default function Dashboard() {
 
       <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
 
-        {/* KICKOFF DAY BANNER */}
-        <div className="rounded-2xl bg-gradient-to-r from-green-600 to-emerald-700 text-white p-6 text-center space-y-2 shadow-lg">
-          <div className="text-4xl">⚽</div>
-          <div className="text-2xl font-extrabold tracking-tight">KICKOFF DAY — June 17, 2026</div>
-          <div className="text-lg font-semibold opacity-90">🇺🇿 Uzbekistan vs Colombia 🇨🇴 · 21:00 CST · Estadio Azteca, Mexico City</div>
-          <div className="text-base opacity-80">10,000+ community members · 90 Uzbeks at Azteca · 107 US venues · Olg&apos;a O&apos;zbekiston!</div>
-          <a href="https://uzbekworldclub.com" target="_blank" rel="noreferrer"
-            className="inline-block mt-2 rounded-lg bg-white text-green-700 px-5 py-2 text-base font-bold hover:bg-green-50 transition-colors no-underline">
-            Open Live Site →
-          </a>
-        </div>
-
         {/* Countdown + Match Schedule */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
