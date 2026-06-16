@@ -598,22 +598,32 @@ export default function Dashboard() {
         {/* Project Map */}
         <Card className="border-blue-200 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-900">
           <CardHeader>
-            <CardTitle className="text-xl text-blue-900 dark:text-blue-100">📊 Project Map</CardTitle>
+            <CardTitle className="text-xl text-blue-900 dark:text-blue-100">📊 Knowledge Graphs</CardTitle>
             <CardDescription className="text-base text-blue-700 dark:text-blue-300">
-              A visual overview of everything in our plan — how phases, goals, risks, and deliverables connect to each other.
+              Two interactive graphs — one for the execution plan, one for the website structure.
             </CardDescription>
           </CardHeader>
-          <CardContent className="text-base text-blue-800 dark:text-blue-200 space-y-3">
-            <p>
-              We mapped out the entire project as an interactive diagram. You can click on any item to see
-              what it connects to — which phase it belongs to, what it depends on, and who&apos;s responsible.
-            </p>
-            <p>
-              This helps us stay organized and plan ahead for the next phases.
-            </p>
-            <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 mt-3 rounded-lg bg-blue-700 dark:bg-blue-600 text-white px-5 py-3 text-base font-semibold hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
-              📊 Open Project Map →
-            </a>
+          <CardContent className="space-y-4">
+            <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-blue-950/30 p-5">
+              <div className="font-bold text-base text-blue-900 dark:text-blue-100 mb-1">📋 Project Plan Graph</div>
+              <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+                Phases, goals, risks, KPIs, deliverables and programs — how the entire execution plan connects.
+                103 nodes · 138 edges · 9 communities.
+              </p>
+              <a href="/graph.html" target="_blank" className="inline-flex items-center gap-2 rounded-lg bg-blue-700 dark:bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
+                Open Project Graph →
+              </a>
+            </div>
+            <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-white dark:bg-blue-950/30 p-5">
+              <div className="font-bold text-base text-blue-900 dark:text-blue-100 mb-1">🌐 Website Structure Graph</div>
+              <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+                All 25 uzbekworldclub.com pages, sitemap, SEO architecture, bugs, features and community concepts.
+                168 nodes · 192 edges · 20 communities.
+              </p>
+              <a href="/graph-uwc.html" target="_blank" className="inline-flex items-center gap-2 rounded-lg bg-blue-700 dark:bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-800 dark:hover:bg-blue-500 transition-colors no-underline">
+                Open Website Graph →
+              </a>
+            </div>
           </CardContent>
         </Card>
 
