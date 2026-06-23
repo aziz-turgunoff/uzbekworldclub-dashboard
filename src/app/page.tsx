@@ -194,7 +194,7 @@ function Countdown() {
   const [secs, setSecs] = useState(0);
 
   useEffect(() => {
-    const target = new Date("2026-06-17T21:00:00-05:00").getTime();
+    const target = new Date("2026-06-27T23:30:00Z").getTime();
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) return;
@@ -228,9 +228,9 @@ function Countdown() {
 }
 
 const matches = [
-  { date: "Jun 17", time: "21:00 CST", opponent: "Colombia", flagCode: "co", city: "Mexico City", stadium: "Estadio Azteca", live: true },
-  { date: "Jun 23", time: "18:00 ET", opponent: "Portugal", flagCode: "pt", city: "Houston", stadium: "NRG Stadium", live: false },
-  { date: "Jun 27", time: "16:00 ET", opponent: "DR Congo", flagCode: "cd", city: "Atlanta", stadium: "Mercedes-Benz Stadium", live: false },
+  { date: "Jun 17", time: "FT", opponent: "Colombia", flagCode: "co", city: "Mexico City", stadium: "Estadio Azteca", result: "1–3 L" },
+  { date: "Jun 23", time: "FT", opponent: "Portugal", flagCode: "pt", city: "Houston", stadium: "NRG Stadium", result: "0–5 L" },
+  { date: "Jun 27", time: "7:30 PM EDT", opponent: "DR Congo", flagCode: "cd", city: "Atlanta", stadium: "Mercedes-Benz Stadium", result: null },
 ];
 
 const phases = [
@@ -464,9 +464,9 @@ export default function Dashboard() {
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl">⏰ Time Until First Match</CardTitle>
+              <CardTitle className="text-xl">⏰ Time Until Last Group Match</CardTitle>
               <CardDescription className="text-base flex items-center gap-2 flex-wrap">
-                <Flag code="uz" size={20} /> Uzbekistan vs <Flag code="pt" size={20} /> Portugal — Houston, June 17
+                <Flag code="uz" size={20} /> Uzbekistan vs <Flag code="cd" size={20} /> DR Congo — Atlanta, Jun 27 ⚠️ Must Win
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -480,21 +480,28 @@ export default function Dashboard() {
               <CardDescription className="text-base">Group K — three games, three cities</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {matches.map((m) => (
-                <div key={m.date} className={`flex items-center justify-between rounded-xl border p-4 ${(m as {live?:boolean}).live ? "border-green-400 bg-green-50 dark:bg-green-950/30" : ""}`}>
+              {matches.map((m) => {
+                const r = (m as {result?:string|null}).result;
+                const isNext = !r;
+                return (
+                <div key={m.date} className={`flex items-center justify-between rounded-xl border p-4 ${
+                  isNext ? "border-amber-400 bg-amber-50 dark:bg-amber-950/20" :
+                  r?.includes("L") ? "opacity-70" : "border-green-400 bg-green-50 dark:bg-green-950/20"
+                }`}>
                   <div className="flex items-center gap-4">
                     <Flag code={m.flagCode} size={40} />
                     <div>
-                      <div className="font-bold text-base">vs {m.opponent} {(m as {live?:boolean}).live && <span className="ml-2 text-xs bg-green-600 text-white rounded px-2 py-0.5">TODAY</span>}</div>
+                      <div className="font-bold text-base">vs {m.opponent} {isNext && <span className="ml-2 text-xs bg-amber-500 text-white rounded px-2 py-0.5">⚠️ MUST WIN</span>}</div>
                       <div className="text-sm text-muted-foreground">{m.stadium}, {m.city}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-base">{m.date}</div>
-                    <div className="text-sm text-muted-foreground">{m.time}</div>
+                    <div className="font-bold text-base">{r ? <span className={r.includes("L") ? "text-red-500" : "text-green-600"}>{r}</span> : m.date}</div>
+                    <div className="text-sm text-muted-foreground">{r ? m.date : m.time}</div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </CardContent>
           </Card>
         </div>
@@ -506,7 +513,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="text-xl">🎯 Our Goals</CardTitle>
-            <CardDescription className="text-base">What we want to achieve by June 17</CardDescription>
+            <CardDescription className="text-base">What we want to achieve by June 27</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
