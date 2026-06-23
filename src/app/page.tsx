@@ -256,7 +256,7 @@ const phases = [
       { name: "Influencer outreach list built (100+)", done: true },
       { name: "City Captain recruitment posts published", done: true },
       { name: "Watch party host kit ready", done: true },
-      { name: "Bot switched to live main channel", done: false },
+      { name: "Bot switched to live main channel", done: true },
       { name: "Goal: 3,000 Telegram members", done: false },
     ],
   },
